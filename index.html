@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Ankit! 🎉🎂</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@400;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating Balloon Background Layer -->
+  <div id="balloon-sky" class="balloon-sky" aria-hidden="true"></div>
+
+  <!-- Music & Audio Controls Floating Toolbar -->
+  <nav class="action-bar">
+    <button id="music-btn" class="toolbar-btn" title="Toggle Birthday Song">
+      <span class="icon">🎵</span>
+      <span class="btn-text">Play Song</span>
+    </button>
+    <button id="confetti-btn" class="toolbar-btn" title="Shower Confetti">
+      <span class="icon">🎊</span>
+      <span class="btn-text">Confetti!</span>
+    </button>
+    <button id="party-mode-btn" class="toolbar-btn" title="Disco Party Mode">
+      <span class="icon">✨</span>
+      <span class="btn-text">Party Lights</span>
+    </button>
+  </nav>
+
+  <!-- Surprise Unboxing Overlay Modal -->
+  <div id="surprise-modal" class="surprise-modal">
+    <div class="gift-box-container">
+      <div class="gift-tag">To: Ankit 🎁</div>
+      <div class="gift-box" id="gift-box">
+        <div class="gift-lid">
+          <div class="ribbon-bow"></div>
+          <div class="ribbon-v"></div>
+        </div>
+        <div class="gift-body">
+          <div class="ribbon-h"></div>
+          <div class="ribbon-v"></div>
+        </div>
+      </div>
+      <p class="gift-instructions">Special surprise waiting for you!</p>
+      <button id="open-gift-btn" class="pulse-btn">
+        <span>🎁 Click to Open Surprise! 🎁</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Birthday Experience -->
+  <main class="main-content" id="main-content">
+    
+    <!-- Hero Section -->
+    <header class="hero-section">
+      <div class="sparkles-decor">✨ 🎈 🥳 🎈 ✨</div>
+      <div class="badge">TODAY'S SPECIAL VIP</div>
+      <h1 class="hero-title">
+        <span class="script-accent">Happy Birthday</span>
+        <span class="name-gradient">ANKIT!</span>
+      </h1>
+      <p class="hero-subtitle">
+        Cheers to another 365 days of epic moments, crazy laughs, and endless achievements! 🚀
+      </p>
+
+      <div class="hero-stats">
+        <div class="stat-card">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Best Friend</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">∞</span>
+          <span class="stat-label">Good Vibes</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">Level Up</span>
+          <span class="stat-label">New Year</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">#1</span>
+          <span class="stat-label">Legend</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Interactive Cake & Wish Section -->
+    <section class="cake-section card-box">
+      <div class="section-heading">
+        <h2>🎂 Make a Wish & Cut the Cake! 🎂</h2>
+        <p>Blow out the candles before cutting your slice!</p>
+      </div>
+
+      <div class="cake-stage">
+        <div class="cake-wrapper" id="cake-wrapper">
+          <!-- Candles on top -->
+          <div class="candles-row">
+            <div class="candle" data-candle="1">
+              <div class="flame" id="flame-1"></div>
+              <div class="smoke" id="smoke-1"></div>
+              <div class="candle-stick"></div>
+            </div>
+            <div class="candle" data-candle="2">
+              <div class="flame" id="flame-2"></div>
+              <div class="smoke" id="smoke-2"></div>
+              <div class="candle-stick"></div>
+            </div>
+            <div class="candle" data-candle="3">
+              <div class="flame" id="flame-3"></div>
+              <div class="smoke" id="smoke-3"></div>
+              <div class="candle-stick"></div>
+            </div>
+          </div>
+
+          <!-- Cake Layers -->
+          <div class="cake-tier tier-top">
+            <div class="frosting-drips">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="cake-tier tier-middle">
+            <div class="frosting-layer"></div>
+          </div>
+          <div class="cake-tier tier-bottom">
+            <div class="cake-plate"></div>
+          </div>
+
+          <!-- Cut Cake Slice Overlay -->
+          <div class="cake-slice-piece" id="cake-slice">🍰</div>
+        </div>
+
+        <div class="cake-status-msg" id="cake-status">
+          Candles are lit! Make a wish, Ankit! 🌟
+        </div>
+
+        <div class="cake-controls">
+          <button id="blow-candles-btn" class="fun-btn">
+            💨 Blow the Candles!
+          </button>
+          <button id="cut-cake-btn" class="fun-btn" disabled>
+            🔪 Cut the Cake!
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Balloon Popping Mini-Game -->
+    <section class="game-section card-box">
+      <div class="section-heading">
+        <h2>🎈 Pop-the-Balloon Surprise Game 🎈</h2>
+        <p>Click or tap the balloons to pop them and reveal reasons why Ankit rocks!</p>
+      </div>
+
+      <div class="game-stats">
+        <span>Balloons Popped: <strong id="pop-count">0</strong> / 6</span>
+        <button id="reset-game-btn" class="secondary-btn">Reset Balloons</button>
+      </div>
+
+      <div class="balloon-grid" id="balloon-grid">
+        <!-- Balloons will be injected by script.js -->
+      </div>
+
+      <div id="game-message-banner" class="game-message-banner">
+        Click any balloon to pop it!
+      </div>
+    </section>
+
+    <!-- Polaroid Memories Gallery -->
+    <section class="memories-section card-box">
+      <div class="section-heading">
+        <h2>📸 Memory Lane with Ankit</h2>
+        <p>Moments, laughs, and adventures that will never be forgotten!</p>
+      </div>
+
+      <div class="photo-tools">
+        <label for="photo-upload" class="photo-upload-btn">
+          📷 Add Your Own Photos of Ankit
+        </label>
+        <input type="file" id="photo-upload" accept="image/*" multiple style="display: none;">
+        <span class="photo-hint">(Select photos to replace cards with real memories)</span>
+      </div>
+
+      <div class="polaroid-grid" id="polaroid-grid">
+        <!-- Polaroid Card 1 -->
+        <div class="polaroid-card">
+          <div class="pin">📌</div>
+          <div class="polaroid-img-wrapper">
+            <div class="photo-placeholder card-gradient-1">
+              <span class="emoji-hero">😎</span>
+              <p>The Mastermind</p>
+            </div>
+          </div>
+          <p class="polaroid-caption">Always ready with the wildest plans!</p>
+        </div>
+
+        <!-- Polaroid Card 2 -->
+        <div class="polaroid-card">
+          <div class="pin">📌</div>
+          <div class="polaroid-img-wrapper">
+            <div class="photo-placeholder card-gradient-2">
+              <span class="emoji-hero">☕</span>
+              <p>Chai & Gupshup</p>
+            </div>
+          </div>
+          <p class="polaroid-caption">Late night chats & endless laughs</p>
+        </div>
+
+        <!-- Polaroid Card 3 -->
+        <div class="polaroid-card">
+          <div class="pin">📌</div>
+          <div class="polaroid-img-wrapper">
+            <div class="photo-placeholder card-gradient-3">
+              <span class="emoji-hero">🍕</span>
+              <p>Foodie King</p>
+            </div>
+          </div>
+          <p class="polaroid-caption">Never says no to a midnight food trip</p>
+        </div>
+
+        <!-- Polaroid Card 4 -->
+        <div class="polaroid-card">
+          <div class="pin">📌</div>
+          <div class="polaroid-img-wrapper">
+            <div class="photo-placeholder card-gradient-4">
+              <span class="emoji-hero">👑</span>
+              <p>Brother for Life</p>
+            </div>
+          </div>
+          <p class="polaroid-caption">Always having each other's back!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Birthday Message & Letter -->
+    <section class="letter-section card-box">
+      <div class="wax-seal">★</div>
+      <div class="letter-paper">
+        <h3 class="letter-heading">Dearest Ankit,</h3>
+        <p class="letter-body">
+          Happy Birthday to one of the most genuine, fun-loving, and dependable people I know!
+          Having you around makes every normal day feel like a celebration.
+          Thank you for all the unforgettable memories, unprompted roasts, deep late-night talks, and constant support.
+        </p>
+        <p class="letter-body">
+          May this coming year bring you unmatched success, endless happiness, great health, and all the goals you’ve been working towards.
+          Stay awesome, stay humble, and keep shining bright! 🌟
+        </p>
+        <p class="letter-signature">
+          Always cheering for you,<br>
+          <span class="signature-name">Your Best Friend ❤️</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- Interactive Wish Board / Guestbook -->
+    <section class="wishes-section card-box">
+      <div class="section-heading">
+        <h2>💌 Leave a Birthday Wish for Ankit</h2>
+        <p>Drop your custom message or greetings below!</p>
+      </div>
+
+      <form id="wish-form" class="wish-form">
+        <div class="form-row">
+          <input type="text" id="wish-author" placeholder="Your Name" required>
+          <select id="wish-emoji">
+            <option value="🎉">🎉 Party</option>
+            <option value="👑">👑 King</option>
+            <option value="❤️">❤️ Love</option>
+            <option value="🔥">🔥 Fire</option>
+            <option value="🚀">🚀 Rocket</option>
+            <option value="🍕">🍕 Treat</option>
+          </select>
+        </div>
+        <textarea id="wish-text" rows="3" placeholder="Write a warm or funny birthday wish for Ankit..." required></textarea>
+        <button type="submit" class="fun-btn">Post Birthday Wish 🚀</button>
+      </form>
+
+      <div class="wishes-wall" id="wishes-wall">
+        <!-- Pre-populated wishes -->
+        <div class="wish-card">
+          <div class="wish-header">
+            <span class="wish-author">Bhai</span>
+            <span class="wish-badge">🎉 Party</span>
+          </div>
+          <p class="wish-msg">Happy Birthday Ankit bhai! Party kab de raha hai bata? May God bless you with everything you desire!</p>
+          <span class="wish-time">Just now</span>
+        </div>
+
+        <div class="wish-card">
+          <div class="wish-header">
+            <span class="wish-author">Squad</span>
+            <span class="wish-badge">🔥 Fire</span>
+          </div>
+          <p class="wish-msg">Keep rocking bro! May this year be your biggest breakthrough year yet. Have the best birthday ever!</p>
+          <span class="wish-time">Today</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      <p>Made with ❤️ to celebrate Ankit's Special Day! 🎂</p>
+      <button id="replay-surprise-btn" class="text-link-btn">🔄 Replay Opening Surprise</button>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
